@@ -1,8 +1,9 @@
 import pytest
 import pytest_html
-import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 @pytest.fixture
@@ -12,7 +13,8 @@ def driver():
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
-    chrome_driver = webdriver.Chrome(options=options)
+    service = Service(ChromeDriverManager().install())
+    chrome_driver = webdriver.Chrome(service=service, options=options)
     yield chrome_driver
     chrome_driver.quit()
 
