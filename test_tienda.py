@@ -2,14 +2,7 @@ import pytest
 from selenium import webdriver
 from login_page import LoginPage, InventoryPage
 
-
-@pytest.fixture
-def driver():
-    """Pytest crea el navegador antes de cada test y lo cierra después automáticamente."""
-    chrome_driver = webdriver.Chrome()
-    chrome_driver.maximize_window()
-    yield chrome_driver
-    chrome_driver.quit()
+# ← Ya NO hay fixture driver aquí, lo hereda de conftest.py
 
 
 def test_login_exitoso(driver):
